@@ -1,3 +1,4 @@
+// Make sure DOM loads first
 document.addEventListener('DOMContentLoaded', function() {
     const categoryInput = document.getElementById('category');
     const itemInput = document.getElementById('item');
