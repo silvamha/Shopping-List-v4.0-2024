@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Shopping List App</title>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Shopping List</h1>
+
+        <!-- Input Fields -->
+        <div class="field">
+          <label class="label">Category</label>
+          <div class="control">
+            <input id="category" class="input" type="text"
+              placeholder="e.g., fruit">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Item</label>
+          <div class="control">
+            <input id="item" class="input" type="text"
+              placeholder="e.g., banana">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Quantity</label>
+          <div class="control">
+            <input id="qty" class="input" type="number" placeholder="e.g., 2">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Price</label>
+          <div class="control">
+            <input id="price" class="input" type="number" step="0.01"
+              placeholder="e.g., 10.00">
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+          <button id="add-btn" class="button is-primary">Add</button>
+          <button id="delete-all-btn" class="button is-danger">Delete
+            All</button>
+        </div>
+
+        <!-- Shopping List Display -->
+        <h2 class="subtitle">Shopping Items</h2>
+        <ul id="shopping-list" class="box"></ul>
+      </div>
+    </section>
+
+    <!-- Add Firebase SDK scripts directly in the HTML -->
+    <script type="module">
+      // Import the Firebase functions you need from the CDN
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js';
+      import { getDatabase, ref, onValue, push, remove } from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js';
+
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "YAIzaSyAd8jQEYKU1EnKNxhMGGptfx1mbJGG2Mu0",
+        authDomain: "shopping-list-v2-2024.firebaseapp.com",
+        databaseURL: "https://shopping-list-v2-2024-default-rtdb.firebaseio.com",
+        projectId: "shopping-list-v2-2024",
+        storageBucket: "shopping-list-v2-2024.appspot.com",
+        messagingSenderId: "555577671500",
+        appId: "1:555577671500:web:e2cc047202e9445a4159e9"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      // DOM Elements
+      const categoryInput = document.getElementById('category');
+      const itemInput = document.getElementById('item');
+      const qtyInput = document.getElementById('qty');
+      const priceInput = document.getElementById('price');
+      const shoppingListElement = document.getElementById('shopping-list');
+      const addBtn = document.getElementById('add-btn');
+      const deleteAllBtn = document.getElementById('delete-all-btn');
+
+      // Fetch and display shopping items
+      function fetchItems() {
+        const itemsRef = ref(database, 'shoppingItems');
+        onValue(itemsRef, (snapshot) => {
+          const items = snapshot.val();
+          shoppingListElement.innerHTML = ''; // Clear current list
+
+          for (let id in items) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+              <span>${items[id].category}: ${items[id].item} (Qty: ${items[id].qty}, Price: $${items[id].price})</span>
+              <button onclick="deleteItem('${id}')">Delete</button>
+            `;
+            shoppingListElement.appendChild(li);
+          }
+        });
+      }
+
+      // Add new item to Firebase
+      addBtn.addEventListener('click', () => {
+        const category = categoryInput.value;
+        const item = itemInput.value;
+        const qty = qtyInput.value;
+        const price = priceInput.value;
+
+        if (category && item && qty && price) {
+          const newItem = {
+            category,
+            item,
+            qty,
+            price
+          };
+
+          // Push new item to the database
+          push(ref(database, 'shoppingItems'), newItem);
+
+          // Clear inputs
+          categoryInput.value = '';
+          itemInput.value = '';
+          qtyInput.value = '';
+          priceInput.value = '';
+        } else {
+          alert('Please fill in all fields');
+        }
+      });
+
+      // Delete all items
+      deleteAllBtn.addEventListener('click', () => {
+        remove(ref(database, 'shoppingItems'));
+      });
+
+      // Delete a specific item
+      window.deleteItem = function (id) {
+        remove(ref(database, 'shoppingItems/' + id));
+      };
+
+      // Fetch items initially
+      fetchItems();
+    </script>
+  </body>
+</html>
