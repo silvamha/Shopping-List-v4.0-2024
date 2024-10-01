@@ -4,3 +4,4 @@ firebase-config.js
 *.txt
 *.pdf
 *.docx
+secrets.js
