@@ -5,3 +5,5 @@ firebase-config.js
 *.pdf
 *.docx
 secrets.js
+vault/
+
