@@ -32,14 +32,6 @@ const addBtn = document.getElementById("add-btn");
 const deleteAllBtn = document.getElementById("delete-all-btn");
 const closeBtn = document.querySelector(".modal-close");
 const modal = document.querySelector(".modal");
-const carsEl= document.querySelector('#cars');
-
-// Test dropdown DOM Manipulation
-
-carsEl.addEventListener('change', (event) => {
-  console.log(event.target.value)
-})
-console.log(carsEl.value)
 
 // Fetch and display shopping items
 function fetchItems() {
@@ -59,13 +51,16 @@ function fetchItems() {
   });
 }
 
+// Capture input value from dropdown
+categoryInput.addEventListener("change", (e) => {
+  console.log(e.target.value);
+});
+
 // Add new item to Firebase
 addBtn.addEventListener("click", () => {
   // const category = categoryInput.value;
-categoryInput.addEventListener('change', (e) => {
-  const category =   e.target.value
-    console.log(e.target.value)
-  })
+
+  const category = categoryInput.value;
   const item = itemInput.value;
   const qty = qtyInput.value;
   const price = priceInput.value;
@@ -110,4 +105,4 @@ fetchItems();
 
 // closeBtn.addEventListener("click", () => {
 //   modal.style.display = "none";
-// }); 
+// });
