@@ -1,45 +1,46 @@
 /* Additional custom styles */
 #shopping-list {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  #shopping-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  #shopping-list li span {
-    margin-right: 10px;
-  }
-  
-  #shopping-list li button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  list-style-type: none;
+  padding-left: 0;
+}
 
-  .modal{
-    display: none;
+#shopping-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  }
-  
-  .center-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+#shopping-list li span {
+  margin-right: 10px;
+}
 
-  .category-input{
-text-decoration: uppercase;
+#shopping-list li button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  }
+.modal {
+  display: none;
+
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.item-input {
+  text-transform: capitalize;
+
+}
+

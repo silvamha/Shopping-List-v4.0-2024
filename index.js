@@ -38,12 +38,16 @@ function fetchItems() {
   const itemsRef = ref(database, "shoppingItems");
   onValue(itemsRef, (snapshot) => {
     const items = snapshot.val();
+    
     shoppingListElement.innerHTML = ""; // Clear current list
 
     for (let id in items) {
+      
+
+      // Did a quick fix with capitalization of "items" but it is not the most efficient method, I am sure
       const li = document.createElement("li");
       li.innerHTML = `
-        <span>${items[id].category}: ${items[id].item} (Qty: ${items[id].qty}, Price: $${items[id].price})</span>
+        <span class ="item-input">${items[id].category}: ${items[id].item} (Qty: ${items[id].qty}, Price: $${items[id].price})</span>
         <button onclick="deleteItem('${id}')">Delete</button>
       `;
       shoppingListElement.appendChild(li);
