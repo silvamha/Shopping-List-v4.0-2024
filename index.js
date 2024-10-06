@@ -1,7 +1,7 @@
 /* *!SECTION
 Migration - Separation of concerns
 Migrated from scritpts in HTML
-*/ 
+*/
 
 // Import the Firebase functions you need from the CDN
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
@@ -15,8 +15,7 @@ import {
 
 // Your Firebase configuration
 const firebaseConfig = {
-  databaseURL:
-    "https://shopping-list-v2-2024-default-rtdb.firebaseio.com",
+  databaseURL: "https://shopping-list-v2-2024-default-rtdb.firebaseio.com",
 };
 
 // Initialize Firebase
@@ -31,6 +30,16 @@ const priceInput = document.getElementById("price");
 const shoppingListElement = document.getElementById("shopping-list");
 const addBtn = document.getElementById("add-btn");
 const deleteAllBtn = document.getElementById("delete-all-btn");
+const closeBtn = document.querySelector(".modal-close");
+const modal = document.querySelector(".modal");
+const carsEl= document.querySelector('#cars');
+
+// Test dropdown DOM Manipulation
+
+carsEl.addEventListener('change', (event) => {
+  console.log(event.target.value)
+})
+console.log(carsEl.value)
 
 // Fetch and display shopping items
 function fetchItems() {
@@ -52,7 +61,11 @@ function fetchItems() {
 
 // Add new item to Firebase
 addBtn.addEventListener("click", () => {
-  const category = categoryInput.value;
+  // const category = categoryInput.value;
+categoryInput.addEventListener('change', (e) => {
+  const category =   e.target.value
+    console.log(e.target.value)
+  })
   const item = itemInput.value;
   const qty = qtyInput.value;
   const price = priceInput.value;
@@ -90,3 +103,11 @@ window.deleteItem = function (id) {
 
 // Fetch items initially
 fetchItems();
+
+// setTimeout(() => {
+//   modal.classList.add("is-active");
+// }, 3000);
+
+// closeBtn.addEventListener("click", () => {
+//   modal.style.display = "none";
+// }); 

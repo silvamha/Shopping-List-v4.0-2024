@@ -24,11 +24,34 @@
          Needs to change text to dropdown
          -->
 
-    <!-- Input Fields -->
-    <div class="field">
+    <!-- Input Fields Text-->
+    <!-- <div class="field">
       <label class="label">Category</label>
       <div class="control">
         <input id="category" class="input" type="text" placeholder="e.g., fruit" />
+      </div>
+    </div> -->
+
+    <!-- Input Fields Dropdown-->
+    <div class="field">
+      <label class="label">Category</label>
+      <div class="control">
+        <div class="select"> 
+          <select id="category" class="input">
+            <option value="">Select a category</option> 
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Meat">Meat</option>
+            <option value="Fish">Fish</option>
+            <option value="Grains">Grains</option>
+            <option value="Dry Goods">Dry Goods</option>
+            <option value="Condiments">Condiments</option>
+            <option value="Cleaning Products">Cleaning Products</option>
+            <option value="Laundry">Laundry</option>
+            <option value="Paper Products">Paper Products</option>
+            <option value="MISC">MISC</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -68,13 +91,19 @@
   </section>
 
   <!--Modal-->
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <!-- Any other Bulma elements you want -->
+  <!-- <div class="_modal hero-body">
+    <div class="_modal-background"></div>
+    <div class="modal-content  has-text-centered center-content">
+      <h1 class="title">Shopping List</h1>
+      <p>Check Items As You Purchase Them</p>
+      <p>Happy Shopping!</p>
+
+ 
     </div>
-    <button class="modal-close is-large" aria-label="close">Close</button>
-  </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div> -->
+
+
 
   <!-- Move to separate JS file -->
 
