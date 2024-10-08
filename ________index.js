@@ -1,6 +1,6 @@
 /* *!SECTION
 Migration - Separation of concerns
-Migrated from scripts in HTML
+Migrated from scritpts in HTML
 */
 
 // Import the Firebase functions you need from the CDN
@@ -11,6 +11,7 @@ import {
   onValue,
   push,
   remove,
+
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 // Your Firebase configuration
@@ -44,6 +45,8 @@ function fetchItems() {
     shoppingListElement.innerHTML = ""; // Clear current list
 
     for (let id in items) {
+      
+
       // Did a quick fix with capitalization of "items" but it is not the most efficient method, I am sure
       const li = document.createElement("li");
       li.innerHTML = `
@@ -62,44 +65,29 @@ categoryInput.addEventListener("change", (e) => {
 
 // Add new item to Firebase
 addBtn.addEventListener("click", () => {
+  // const category = categoryInput.value;
+
   const category = categoryInput.value;
   const item = itemInput.value;
   const qty = qtyInput.value;
   const price = priceInput.value;
 
   if (category && item && qty && price) {
-    const itemsRef = ref(database, "shoppingItems");
-    onValue(itemsRef, (snapshot) => {
-      const items = snapshot.val();
+    const newItem = {
+      category,
+      item,
+      qty,
+      price,
+    };
 
-      // Check if item already exists in the database
-      let itemExists = false;
-      for (let id in items) {
-        if (items[id].category === category && items[id].item.toLowerCase() === item.toLowerCase()) {
-          itemExists = true;
-          break;
-        }
-      }
+    // Push new item to the database
+    push(ref(database, "shoppingItems"), newItem);
 
-      if (itemExists) {
-        alert("This item already exists in the list.");
-      } else {
-        // Push new item to the database
-        const newItem = {
-          category,
-          item,
-          qty,
-          price,
-        };
-        push(itemsRef, newItem);
-
-        // Clear inputs
-        categoryInput.value = "";
-        itemInput.value = "";
-        qtyInput.value = "";
-        priceInput.value = "";
-      }
-    }, { onlyOnce: true });
+    // Clear inputs
+    categoryInput.value = "";
+    itemInput.value = "";
+    qtyInput.value = "";
+    priceInput.value = "";
   } else {
     alert("Please fill in all fields");
   }
