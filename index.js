@@ -40,6 +40,7 @@ function fetchItems() {
     const items = snapshot.val();
 
     console.log(snapshot.val());
+
     
     shoppingListElement.innerHTML = ""; // Clear current list
 
@@ -71,6 +72,9 @@ addBtn.addEventListener("click", () => {
     const itemsRef = ref(database, "shoppingItems");
     onValue(itemsRef, (snapshot) => {
       const items = snapshot.val();
+
+
+
 
       // Check if item already exists in the database
       let itemExists = false;
@@ -118,10 +122,24 @@ window.deleteItem = function (id) {
 // Fetch items initially
 fetchItems();
 
-// setTimeout(() => {
-//   modal.classList.add("is-active");
-// }, 3000);
+setTimeout(() => {
+  modal.classList.add("is-active");
+}, 1500);
 
-// closeBtn.addEventListener("click", () => {
-//   modal.style.display = "none";
-// });
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+
+const testObject={
+  name: "John",
+  age: 30,
+  city: "New York",
+  country: "USA",
+  email: "nqY2W@example.com",
+  phone: "1234567890"
+};
+
+for(let test in testObject){
+    console.log(test)
+}
