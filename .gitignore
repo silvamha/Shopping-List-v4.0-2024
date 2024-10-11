@@ -1,5 +1,6 @@
 node_modules/
 firebase-config.js
+_firebase-confi.js
 *.md
 *.txt
 *.pdf

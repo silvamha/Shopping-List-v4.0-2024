@@ -10,7 +10,7 @@ import {
   ref,
   onValue,
   push,
-  remove,
+  remove
 } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 // Your Firebase configuration
@@ -21,6 +21,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Your code here will run after all DOM elements are loaded
+  console.log("DOM is fully loaded");
+  // Call any other functions or initialize the application here
 
 // DOM Elements
 const categoryInput = document.getElementById("category");
@@ -131,15 +136,19 @@ closeBtn.addEventListener("click", () => {
 });
 
 
-const testObject={
-  name: "John",
-  age: 30,
-  city: "New York",
-  country: "USA",
-  email: "nqY2W@example.com",
-  phone: "1234567890"
-};
+// const testObject={
+//   name: "John",
+//   age: 30,
+//   city: "New York",
+//   country: "USA",
+//   email: "nqY2W@example.com",
+//   phone: "1234567890"
+// };
 
-for(let test in testObject){
-    console.log(test)
-}
+// for(let test in testObject){
+//     console.log(test)
+// }
+});
+
+
+
