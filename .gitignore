@@ -7,4 +7,10 @@ _firebase-confi.js
 *.docx
 secrets.js
 vault/
+*.yaml
+*.gql
+*.cache
+*.d
+*.ts
+*.cjs
 
