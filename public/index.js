@@ -136,18 +136,18 @@ closeBtn.addEventListener("click", () => {
 });
 
 
-// const testObject={
-//   name: "John",
-//   age: 30,
-//   city: "New York",
-//   country: "USA",
-//   email: "nqY2W@example.com",
-//   phone: "1234567890"
-// };
+const testObject={
+  name: "John",
+  age: 30,
+  city: "New York",
+  country: "USA",
+  email: "nqY2W@example.com",
+  phone: "1234567890"
+};
 
-// for(let test in testObject){
-//     console.log(test)
-// }
+for(let test in testObject){
+    console.log(test)
+}
 });
 
 
