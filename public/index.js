@@ -150,5 +150,7 @@ for(let test in testObject){
 }
 });
 
+console.log(testObject)
+
 
 
