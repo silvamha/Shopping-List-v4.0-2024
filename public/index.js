@@ -154,3 +154,5 @@ console.log(testObject)
 
 
 
+let{name,age,city,country,email,phone}=testObject
+console.log(name,age,city,country,email,phone)
